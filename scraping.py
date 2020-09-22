@@ -24,10 +24,8 @@ def scrape_all():
     browser.quit()
     return data
 
-
 def mars_news(browser):
 
-    # Scrape Mars News
     # Visit the mars nasa news site
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
@@ -98,9 +96,27 @@ def mars_facts():
     df.set_index('Description', inplace=True)
 
     # Convert dataframe into HTML format, add bootstrap
-    return df.to_html(classes="table table-striped")
+    return df.to_html
 
-if __name__ == "__main__":
+def hemispheres(browser):
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+    hemisphere_image_urls=[]
+    # looping through each image urls
+    for i in range(4):
+        browser.find_by_css('h3')[i].click()
+        hemi_data= scrape_mars(browser.html)
+        hemisphere_image_urls.append(hemi_data)
+        browser.back()
+    return hemisphere_image_urls
 
-    # If running as script, print scraped data
-    print(scrape_all())
+def scrape_mars(html):
+    hemi_soup= soup.find(html,'html.parser')
+    try:
+        image_elem= hemi_soup.find("a",text="Sample").get("href")
+        title_elem= hemi_soup.find("h2",class_= "title").get_text
+    except AttributeError:
+        image_elem = None
+        title_elem = None
+    hemisphere = {"image url": image_elem, "title" : title_elem}
+    return hemisphere
