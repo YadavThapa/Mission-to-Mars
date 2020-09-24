@@ -103,13 +103,27 @@ def hemispheres(browser):
     browser.visit(url)
     hemisphere_image_urls=[]
     # looping through each image urls
-    for i in range(4):
-        browser.find_by_css('h3')[i].click()
-        hemi_data= scrape_mars(browser.html)
-        hemisphere_image_urls.append(hemi_data)
+    for i in range(len(links)):
+        # Find Element on Each Loop to Avoid a Stale Element Exception
+        hemisphere={}
+        browser.find_by_css("a.product-item h3")[item].click()
+        
+        # Find Sample Image Anchor Tag & Extract <href>
+    `   sample_element = browser.find_link_by_text("Sample").first
+        hemisphere["img_url"] = sample_element["href"]
+        
+        # Get Hemisphere Title
+        hemisphere["title"] = browser.find_by_css("h2.title").text
+    
+        # Append Hemisphere Object to List
+        hemisphere_image_urls.append(hemisphere)
+    
+        # Navigate Backwards
         browser.back()
-    return hemisphere_image_urls
-
+        
+    
+        return hemisphere_image_urls
+# updating image url and tilte together
 def scrape_mars(html):
     hemi_soup= soup.find(html,'html.parser')
     try:
