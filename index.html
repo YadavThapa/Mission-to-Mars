@@ -55,21 +55,34 @@
       </div>
 
       <!-- Section for Mars Hemispheres -->
-      <div class ="row" id="mars-hemispheres">
-        <div class = "col-md-12">
-            <h3><center>Mars Hemispheres</center></h3>
-            {% for hemisphere in mars.hemisphere_image_urls %}
-                <div class = "col-md-4">
-                    <div class = "thumbnail">
-                        <img src = "{{hemisphere.image_url}}">
-                            <h3>{{hemisphere.title}}</h3>
-                        </div>
-                    </div>
-            {% endfor %}
-                </div>
-        
+      <div class="row">
+          <div class="col-md-6">
+            <img src="{{mars.hemispheres[0]['image_url']}}" alt="Mars Hemisphere1" style="width:400px;height:400px;border:0;">
+            <h3>{{mars.hemispheres[0]['title']}}</h3>
+          </div>
+          <div class="col-md-6">
+            <img src="{{mars.hemispheres[1]['image_url']}}" alt="Mars Hemisphere2" style="width:400px;height:400px;border:0;">
+            <h3>{{mars.hemispheres[1]['title']}}</h3>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{{mars.hemispheres[0]['image_url']}}" alt="Mars Hemisphere1" style="width:400px;height:400px;border:0;">
+            <h3>{{mars.hemispheres[0]['title']}}</h3>
+          </div>
+          <div class="col-md-6">
+            <img src="{{mars.hemispheres[1]['image_url']}}" alt="Mars Hemisphere2" style="width:400px;height:400px;border:0;">
+            <h3>{{mars.hemispheres[1]['title']}}</h3>
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous">
+    </script>
+    
   </body>
 </html>
